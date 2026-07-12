@@ -93,7 +93,8 @@ img { max-width: 100%; display: block; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 45%; /* Change this value to move it up or down */
+    /* Change 35% to 65% to move the photo up (focus on the bottom part where your face is) */
+    object-position: center 65%; 
 }
 .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--text-muted); font-size: 0.85rem; animation: bounce 2s infinite; }
 @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-10px); } }
