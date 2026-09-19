@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,7 +113,7 @@
             transition: all 0.15s ease-out;
         }
 
-        /* ===== LOADER ===== */
+        /* ===== LOADER - JUST "Welcome" ===== */
         .loader {
             position: fixed; inset: 0; background: var(--bg-primary); z-index: 100000;
             display: flex; align-items: center; justify-content: center;
@@ -123,35 +123,27 @@
         .loader.hidden { opacity: 0; visibility: hidden; }
         .loader-welcome {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            color: var(--text-muted);
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            animation: fadeIn 0.5s ease;
-        }
-        .loader-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             background: var(--gradient-4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: 0.05em;
-            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
         .loader-bar {
-            width: 200px; height: 2px; background: var(--bg-card); border-radius: 2px; overflow: hidden;
+            width: 120px; height: 2px; background: var(--bg-card); border-radius: 2px; overflow: hidden;
         }
         .loader-bar::after {
             content: ''; display: block; width: 0%; height: 100%;
-            background: var(--gradient-4); animation: loadBar 1.8s ease-in-out forwards;
+            background: var(--gradient-4); animation: loadBar 1.5s ease-in-out forwards;
         }
         @keyframes loadBar { to { width: 100%; } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* ===== NAVIGATION ===== */
+        /* ===== NAVIGATION - NO LOGO ICON ===== */
         .navbar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             padding: 16px 40px; transition: var(--transition);
@@ -168,11 +160,7 @@
             display: flex; align-items: center; justify-content: space-between;
         }
         .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); }
-        .nav-logo-icon {
-            width: 42px; height: 42px; background: var(--gradient-4); border-radius: var(--radius-sm);
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 14px; font-family: 'JetBrains Mono', monospace; color: white;
-        }
+        /* Logo icon removed - only text now */
         .nav-logo-text { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.02em; }
         .nav-logo-text span {
             color: var(--text-muted); font-weight: 400; font-size: 0.75rem;
@@ -289,8 +277,9 @@
         }
         .hero-image-wrapper img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; transition: transform 6s ease; }
         .hero-image-wrapper:hover img { transform: scale(1.08); }
-        .hero-image-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%); }
+        .hero-image-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 40%); }
         
+        /* Photo tag - kept for desktop, hidden on mobile */
         .hero-image-tag {
             position: absolute; bottom: 20px; left: 20px; right: 20px;
             background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px);
@@ -521,30 +510,33 @@
         @media (max-width: 768px) {
             .section { padding: 80px 20px; }
             .navbar { padding: 12px 20px; }
-            .hero { padding: 100px 20px 60px; }
+            .hero { padding: 90px 20px 60px; }
             
-            /* FIX: Mobile - Text first, photo smaller and below */
+            /* MOBILE FIX: Photo FIRST, text BELOW, no overlay on photo */
             .hero-container { 
                 grid-template-columns: 1fr; 
-                gap: 32px; 
+                gap: 28px; 
                 text-align: center; 
             }
             .hero-content { 
                 align-items: center; 
-                order: 1; /* Text comes first */
+                order: 2; /* Text comes AFTER photo */
             }
             .hero-visual { 
-                order: 2; /* Photo comes after text */
-                margin-top: 20px;
+                order: 1; /* Photo comes FIRST */
+                margin-top: 0;
             }
             .hero-image-wrapper { 
-                width: 240px; 
-                height: 300px; 
+                width: 260px; 
+                height: 320px; 
             }
+            /* Hide the text overlay card on photo for mobile */
+            .hero-image-tag { display: none; }
             .hero-float-card { display: none; }
-            .hero-title { font-size: 2.2rem; }
-            .hero-stats { gap: 24px; }
-            .hero-stat-number { font-size: 1.5rem; }
+            .hero-title { font-size: 2rem; }
+            .hero-stats { gap: 20px; }
+            .hero-stat-number { font-size: 1.4rem; }
+            .hero-badge { font-size: 0.75rem; padding: 6px 14px; }
             
             .nav-links {
                 position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
@@ -564,19 +556,17 @@
             .cursor-dot, .cursor-ring { display: none; }
         }
         @media (max-width: 480px) {
-            .hero-title { font-size: 1.9rem; }
-            .hero-image-wrapper { width: 200px; height: 260px; }
+            .hero-title { font-size: 1.8rem; }
+            .hero-image-wrapper { width: 220px; height: 280px; }
             .contact-form-wrapper { padding: 28px 20px; }
-            .hero-badge { font-size: 0.75rem; padding: 6px 14px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Loader with Welcome -->
+    <!-- Loader - Just "Welcome" -->
     <div class="loader" id="loader">
         <div class="loader-welcome">Welcome</div>
-        <div class="loader-text">&lt;Md. Shohidul/&gt;</div>
         <div class="loader-bar"></div>
     </div>
 
@@ -584,11 +574,11 @@
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
 
-    <!-- Navigation -->
+    <!-- Navigation - No Logo Icon -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo">
-                <div class="nav-logo-icon">&lt;S/&gt;</div>
+                <!-- Logo icon removed -->
                 <div class="nav-logo-text">
                     Md. Shohidul Islam
                     <span>// UI/UX & Frontend</span>
@@ -669,6 +659,7 @@
                 <div class="hero-image-wrapper">
                     <img src="https://i.ibb.co.com/93t9Swfd/DSC-0055-1.jpg" alt="Md. Shohidul Islam">
                     <div class="hero-image-overlay"></div>
+                    <!-- Tag hidden on mobile via CSS -->
                     <div class="hero-image-tag">
                         <div class="tag-info">
                             <span class="tag-name">Md. Shohidul Islam</span>
@@ -1019,11 +1010,11 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Your Name</label>
-                                <input type="text" placeholder="John Doe" required>
+                                <input type="text" placeholder="Shohidul" required>
                             </div>
                             <div class="form-group">
                                 <label>Email Address</label>
-                                <input type="email" placeholder="john@example.com" required>
+                                <input type="email" placeholder="shohidul@example.com" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -1098,7 +1089,7 @@
         const themeIcon = themeToggle.querySelector('i');
         const html = document.documentElement;
         
-        const currentTheme = localStorage.getItem('theme') || 'dark';
+        const currentTheme = localStorage.getItem('theme') || 'light';
         html.setAttribute('data-theme', currentTheme);
         updateThemeIcon(currentTheme);
 
@@ -1118,7 +1109,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loader').classList.add('hidden');
-            }, 2200);
+            }, 1500);
         });
 
         // ===== CUSTOM CURSOR =====
@@ -1203,7 +1194,7 @@
             }
             setTimeout(type, typeSpeed);
         }
-        setTimeout(type, 2500);
+        setTimeout(type, 1800);
 
         // ===== SCROLL REVEAL =====
         const revealElements = document.querySelectorAll('.reveal');
@@ -1286,7 +1277,7 @@
         style.textContent = `@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }`;
         document.head.appendChild(style);
 
-        console.log(' Md. Shohidul Islam Portfolio loaded successfully!');
+        console.log('✅ Md. Shohidul Islam Portfolio loaded successfully!');
     </script>
 </body>
 </html>
