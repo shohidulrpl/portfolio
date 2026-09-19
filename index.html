@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shohidul Islam | UI/UX Designer & Frontend Developer</title>
+    <title>Md. Shohidul Islam | UI/UX Designer & Frontend Developer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* ===== RESET & VARIABLES ===== */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* LIGHT THEME (Default) */
         :root {
             --bg-primary: #ffffff;
             --bg-secondary: #f8fafc;
@@ -19,26 +18,21 @@
             --text-primary: #0f172a;
             --text-secondary: #475569;
             --text-muted: #94a3b8;
-            
             --accent-1: #4f46e5;
             --accent-2: #6366f1;
             --accent-3: #a855f7;
             --accent-4: #0891b2;
             --accent-5: #059669;
-            
             --gradient-1: linear-gradient(135deg, #4f46e5, #6366f1);
             --gradient-2: linear-gradient(135deg, #6366f1, #a855f7);
             --gradient-3: linear-gradient(135deg, #0891b2, #4f46e5);
             --gradient-4: linear-gradient(135deg, #4f46e5, #0891b2, #6366f1);
-            
             --glass-bg: rgba(255, 255, 255, 0.6);
             --glass-border: rgba(0, 0, 0, 0.08);
             --glass-bg-hover: rgba(255, 255, 255, 0.9);
-            
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
             --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
-
             --radius-sm: 12px;
             --radius-md: 16px;
             --radius-lg: 24px;
@@ -46,7 +40,6 @@
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* DARK THEME */
         [data-theme="dark"] {
             --bg-primary: #050507;
             --bg-secondary: #0a0a0f;
@@ -55,22 +48,18 @@
             --text-primary: #fafafa;
             --text-secondary: #a1a1aa;
             --text-muted: #71717a;
-            
             --accent-1: #60a5fa;
             --accent-2: #818cf8;
             --accent-3: #c084fc;
             --accent-4: #22d3ee;
             --accent-5: #34d399;
-            
             --gradient-1: linear-gradient(135deg, #60a5fa, #818cf8);
             --gradient-2: linear-gradient(135deg, #818cf8, #c084fc);
             --gradient-3: linear-gradient(135deg, #22d3ee, #60a5fa);
             --gradient-4: linear-gradient(135deg, #60a5fa, #22d3ee, #818cf8);
-            
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
             --glass-bg-hover: rgba(255, 255, 255, 0.06);
-            
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
             --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
             --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.4);
@@ -128,21 +117,39 @@
         .loader {
             position: fixed; inset: 0; background: var(--bg-primary); z-index: 100000;
             display: flex; align-items: center; justify-content: center;
-            flex-direction: column; gap: 24px;
+            flex-direction: column; gap: 20px;
             transition: opacity 0.6s, visibility 0.6s;
         }
         .loader.hidden { opacity: 0; visibility: hidden; }
-        .loader-text {
-            font-family: 'JetBrains Mono', monospace; font-size: 1.5rem;
-            background: var(--gradient-4); -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 0.1em;
+        .loader-welcome {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            color: var(--text-muted);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            animation: fadeIn 0.5s ease;
         }
-        .loader-bar { width: 200px; height: 2px; background: var(--bg-card); border-radius: 2px; overflow: hidden; }
+        .loader-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.05em;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+        .loader-bar {
+            width: 200px; height: 2px; background: var(--bg-card); border-radius: 2px; overflow: hidden;
+        }
         .loader-bar::after {
             content: ''; display: block; width: 0%; height: 100%;
             background: var(--gradient-4); animation: loadBar 1.8s ease-in-out forwards;
         }
         @keyframes loadBar { to { width: 100%; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* ===== NAVIGATION ===== */
         .navbar {
@@ -238,7 +245,6 @@
         }
         .hero-title .line:nth-child(2) span { animation-delay: 0.15s; }
         .hero-title .line:nth-child(3) span { animation-delay: 0.3s; }
-        @keyframes slideUp { to { transform: translateY(0); } }
         .hero-title .gradient-text {
             background: var(--gradient-4); -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; background-clip: text;
@@ -251,7 +257,6 @@
         .typing-prefix { color: var(--text-muted); }
         .cursor-blink { display: inline-block; width: 2px; height: 1.2em; background: var(--accent-4); animation: blink 1s infinite; vertical-align: middle; }
         @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
-        @keyframes fadeIn { to { opacity: 1; } }
 
         .hero-description { font-size: 1.05rem; color: var(--text-secondary); max-width: 520px; line-height: 1.7; opacity: 0; animation: fadeIn 0.8s 0.5s forwards; }
         .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: fadeIn 0.8s 0.7s forwards; }
@@ -517,6 +522,30 @@
             .section { padding: 80px 20px; }
             .navbar { padding: 12px 20px; }
             .hero { padding: 100px 20px 60px; }
+            
+            /* FIX: Mobile - Text first, photo smaller and below */
+            .hero-container { 
+                grid-template-columns: 1fr; 
+                gap: 32px; 
+                text-align: center; 
+            }
+            .hero-content { 
+                align-items: center; 
+                order: 1; /* Text comes first */
+            }
+            .hero-visual { 
+                order: 2; /* Photo comes after text */
+                margin-top: 20px;
+            }
+            .hero-image-wrapper { 
+                width: 240px; 
+                height: 300px; 
+            }
+            .hero-float-card { display: none; }
+            .hero-title { font-size: 2.2rem; }
+            .hero-stats { gap: 24px; }
+            .hero-stat-number { font-size: 1.5rem; }
+            
             .nav-links {
                 position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
                 background: var(--bg-primary); border-left: 1px solid var(--glass-border);
@@ -530,23 +559,24 @@
             .bento-card.span-2, .bento-card.span-3 { grid-column: span 1; }
             .services-grid, .projects-grid { grid-template-columns: 1fr; }
             .form-row { grid-template-columns: 1fr; }
-            .hero-float-card { display: none; }
             .footer-top { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; text-align: center; }
             .cursor-dot, .cursor-ring { display: none; }
         }
         @media (max-width: 480px) {
-            .hero-title { font-size: 2.3rem; }
-            .hero-image-wrapper { width: 260px; height: 340px; }
+            .hero-title { font-size: 1.9rem; }
+            .hero-image-wrapper { width: 200px; height: 260px; }
             .contact-form-wrapper { padding: 28px 20px; }
+            .hero-badge { font-size: 0.75rem; padding: 6px 14px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Loader -->
+    <!-- Loader with Welcome -->
     <div class="loader" id="loader">
-        <div class="loader-text">&lt;SHOHIDUL/&gt;</div>
+        <div class="loader-welcome">Welcome</div>
+        <div class="loader-text">&lt;Md. Shohidul/&gt;</div>
         <div class="loader-bar"></div>
     </div>
 
@@ -560,7 +590,7 @@
             <a href="#home" class="nav-logo">
                 <div class="nav-logo-icon">&lt;S/&gt;</div>
                 <div class="nav-logo-text">
-                    Shohidul Islam
+                    Md. Shohidul Islam
                     <span>// UI/UX & Frontend</span>
                 </div>
             </a>
@@ -637,11 +667,11 @@
 
             <div class="hero-visual">
                 <div class="hero-image-wrapper">
-                    <img src="https://i.ibb.co.com/93t9Swfd/DSC-0055-1.jpg" alt="Shohidul Islam">
+                    <img src="https://i.ibb.co.com/93t9Swfd/DSC-0055-1.jpg" alt="Md. Shohidul Islam">
                     <div class="hero-image-overlay"></div>
                     <div class="hero-image-tag">
                         <div class="tag-info">
-                            <span class="tag-name">Shohidul Islam</span>
+                            <span class="tag-name">Md. Shohidul Islam</span>
                             <span class="tag-role">// Designer & Developer</span>
                         </div>
                         <span class="tag-status">Available</span>
@@ -676,7 +706,6 @@
             <div class="marquee-item"><span>Web Performance</span><div class="marquee-dot"></div></div>
             <div class="marquee-item"><span>JavaScript</span><div class="marquee-dot"></div></div>
             <div class="marquee-item"><span>Prototyping</span><div class="marquee-dot"></div></div>
-            <!-- Duplicate for seamless loop -->
             <div class="marquee-item"><span>UI/UX Design</span><div class="marquee-dot"></div></div>
             <div class="marquee-item"><span>Frontend Development</span><div class="marquee-dot"></div></div>
             <div class="marquee-item"><span>Responsive Design</span><div class="marquee-dot"></div></div>
@@ -698,7 +727,7 @@
 
             <div class="bento-grid">
                 <div class="bento-card span-2 row-2 image-card reveal reveal-delay-1">
-                    <img src="https://i.ibb.co.com/93t9Swfd/DSC-0055-1.jpg" alt="Shohidul">
+                    <img src="https://i.ibb.co.com/93t9Swfd/DSC-0055-1.jpg" alt="Md. Shohidul Islam">
                 </div>
 
                 <div class="bento-card span-2 bento-about-text reveal reveal-delay-2">
@@ -1020,7 +1049,7 @@
         <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <h3>&lt;Shohidul/&gt;</h3>
+                    <h3>Md. Shohidul Islam</h3>
                     <p>Crafting digital experiences with passion and precision. Based in Bangladesh, working globally.</p>
                 </div>
                 <div class="footer-col">
@@ -1052,7 +1081,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 Shohidul Islam. All rights reserved.</p>
+                <p>© 2026 Md. Shohidul Islam. All rights reserved.</p>
                 <p>Designed & Built with <span>❤️</span></p>
             </div>
         </div>
@@ -1069,8 +1098,7 @@
         const themeIcon = themeToggle.querySelector('i');
         const html = document.documentElement;
         
-        // Load saved theme or default to light
-        const currentTheme = localStorage.getItem('theme') || 'light';
+        const currentTheme = localStorage.getItem('theme') || 'dark';
         html.setAttribute('data-theme', currentTheme);
         updateThemeIcon(currentTheme);
 
@@ -1090,7 +1118,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loader').classList.add('hidden');
-            }, 1800);
+            }, 2200);
         });
 
         // ===== CUSTOM CURSOR =====
@@ -1175,7 +1203,7 @@
             }
             setTimeout(type, typeSpeed);
         }
-        setTimeout(type, 1500);
+        setTimeout(type, 2500);
 
         // ===== SCROLL REVEAL =====
         const revealElements = document.querySelectorAll('.reveal');
@@ -1258,7 +1286,7 @@
         style.textContent = `@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }`;
         document.head.appendChild(style);
 
-        console.log('🚀 Shohidul Islam Portfolio loaded successfully!');
+        console.log(' Md. Shohidul Islam Portfolio loaded successfully!');
     </script>
 </body>
 </html>
