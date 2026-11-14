@@ -251,3 +251,11 @@ img { max-width: 100%; display: block; }
     .btn { width: 100%; justify-content: center; }
     .contact-form { padding: 25px; }
 }
+.btn-whatsapp {
+      background: #16a34a;
+      color: var(--white);
+    }
+
+    .btn-whatsapp:hover {
+      background: #15803d;
+    }
